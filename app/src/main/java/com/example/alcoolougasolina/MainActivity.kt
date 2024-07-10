@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,8 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -105,21 +109,19 @@ fun App() {
         Spacer(modifier = Modifier.size(16.dp))
 
         TextField(
-            value = valorGasolina,
-            onValueChange = { valorGasolina = it.filter { char -> char.isDigit() } },
-            label = {
-                Text("Gasolina")
-            }
+            value = TextFieldValue(text = valorGasolina, selection = TextRange(valorGasolina.length)),
+            onValueChange = { valorGasolina = it.text },
+            label = { Text("Gasolina") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
         Spacer(modifier = Modifier.size(8.dp))
 
         TextField(
-            value = valorAlcool,
-            onValueChange = { valorAlcool = it.filter { char -> char.isDigit() } },
-            label = {
-                Text("Álcool")
-            }
+            value = TextFieldValue(text = valorAlcool, selection = TextRange(valorAlcool.length)),
+            onValueChange = { valorAlcool = it.text },
+            label = { Text("Álcool") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
     }
 }
